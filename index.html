@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=4fac5044-279b-4464-afa3-37049e82bd55
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Спокій розуму — швидка психологічна самодопомога без реєстрації</title>
+  <meta name="description" content="«Спокій розуму» — безкоштовна українська платформа першої психологічної самодопомоги: дихальні вправи, заземлення та аудіо-релакс за 1–2 кліки, без реєстрації.">
+  <meta name="theme-color" content="#4a829b">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <!-- Fonts: Nunito Sans & Lora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Configuration: дизайн-система з ЛР №4 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f0f6f8', 100: '#e1edf1', 200: '#c3dbe3', 500: '#4a829b', 600: '#3b6b80', 700: '#2f5567', 800: '#254453', 900: '#1b323e' },
+            sos: { DEFAULT: '#e55b5b', hover: '#d14949', dark: '#b93a3a' }
+          },
+          fontFamily: {
+            sans: ['"Nunito Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Lora', 'Georgia', 'serif']
+          },
+          maxWidth: { container: '1140px' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Brand Styles (токени медіа, фон, a11y) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-w-[320px] bg-[#f4f7f9] text-gray-800 font-sans antialiased selection:bg-brand-100 selection:text-brand-800">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:text-brand-700 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow">Перейти до основного вмісту</a>
+
+  <!-- ==================== 1. HEADER (Шапка) ==================== -->
+  <header class="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80" id="top">
+    <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+
+      <a class="flex items-center gap-2.5 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-brand-500" href="#top" aria-label="Спокій розуму — на головну">
+        <img src="assets/images/logo.svg" alt="Логотип сервісу Спокій розуму" class="w-9 h-9 sm:w-10 sm:h-10 object-contain" width="40" height="40">
+        <span class="text-base sm:text-xl font-bold text-gray-900 tracking-tight whitespace-nowrap">Спокій розуму</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center" aria-label="Головна навігація">
+        <ul class="flex items-center gap-1 xl:gap-3 list-none m-0 p-0">
+          <li><a href="#benefits" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Переваги</a></li>
+          <li><a href="#services" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Практики</a></li>
+          <li><a href="#about" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Про нас</a></li>
+          <li><a href="#media" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Відео</a></li>
+          <li><a href="#contacts" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Контакти</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a class="inline-flex items-center justify-center gap-2 bg-sos-dark hover:bg-sos-hover text-white font-bold text-xs sm:text-sm px-3.5 sm:px-5 py-2.5 min-h-[44px] rounded-full shadow-sm hover:shadow transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sos" href="#support">
+          <i class="fa-solid fa-life-ring" aria-hidden="true"></i>
+          <span class="whitespace-nowrap">SOS<span class="hidden sm:inline"> · Допомога зараз</span></span>
+        </a>
+        <button id="mobile-menu-toggle" type="button" class="lg:hidden inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500" aria-expanded="false" aria-controls="mobile-menu" aria-label="Відкрити головне меню">
+          <i class="fa-solid fa-bars text-xl" id="menu-icon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 shadow-lg">
+      <nav aria-label="Мобільна навігація">
+        <ul class="flex flex-col gap-1 list-none m-0 p-0">
+          <li><a href="#benefits" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-star text-brand-500 w-5" aria-hidden="true"></i>Переваги</a></li>
+          <li><a href="#services" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-spa text-brand-500 w-5" aria-hidden="true"></i>Практики</a></li>
+          <li><a href="#about" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-heart text-brand-500 w-5" aria-hidden="true"></i>Про нас</a></li>
+          <li><a href="#media" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-circle-play text-brand-500 w-5" aria-hidden="true"></i>Відео</a></li>
+          <li><a href="#contacts" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-location-dot text-brand-500 w-5" aria-hidden="true"></i>Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="max-w-container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+
+    <!-- ==================== 2. HERO (Головний екран) ==================== -->
+    <section class="pt-8 pb-10 sm:py-14 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center" aria-labelledby="page-title">
+      <div class="lg:col-span-7 flex flex-col items-start gap-4 sm:gap-5">
+        <p class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-700 text-xs sm:text-sm font-bold tracking-wide uppercase">
+          <span class="w-2 h-2 rounded-full bg-brand-500" aria-hidden="true"></span>
+          Безкоштовно · українською · без реєстрації
+        </p>
+        <h1 class="text-[2rem] leading-tight sm:text-5xl lg:text-[3.4rem] font-bold font-display text-gray-900" id="page-title">
+          Допомога тут і зараз
+        </h1>
+        <p class="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
+          Обери свій стан — і за 1–2 кліки отримай дихальну вправу, техніку заземлення або аудіо-релакс. Можна зупинитися будь-коли.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 pt-1 w-full sm:w-auto">
+          <a href="#services" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-base px-6 py-3 min-h-[48px] rounded-full shadow-sm hover:shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+            <i class="fa-solid fa-wind" aria-hidden="true"></i><span>Обрати свій стан</span>
+          </a>
+          <a href="#media" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white hover:bg-brand-50 text-gray-700 hover:text-brand-700 font-bold text-base px-6 py-3 min-h-[48px] rounded-full border border-gray-300 hover:border-brand-500 shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
+            <i class="fa-solid fa-circle-play text-brand-600" aria-hidden="true"></i><span>Дихати з відео</span>
+          </a>
+        </div>
+        <p class="text-xs sm:text-sm text-gray-500">Твій темп. Твій вибір. Без обов'язкових відповідей.</p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <figure class="relative rounded-3xl overflow-hidden border border-white shadow-lg bg-white">
+          <img src="assets/images/hero-calm.webp" alt="Абстрактна фігура в позі медитації серед м'яких блакитних хвиль" class="w-full h-auto aspect-[640/468] object-cover" width="640" height="468" fetchpriority="high">
+          <figcaption class="absolute left-4 bottom-4 bg-white/95 px-4 py-2 rounded-xl shadow-md border border-slate-100">
+            <span class="block text-xs text-gray-500 font-medium">Стан рівноваги</span>
+            <span class="block text-sm font-bold text-brand-700">Саморегуляція за 1 хв</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== 3. BENEFITS (Переваги) ==================== -->
+    <section class="mt-6 sm:mt-10 scroll-mt-24" id="benefits" aria-labelledby="benefits-title">
+      <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-2" id="benefits-title">Чому «Спокій розуму»</h2>
+      <p class="text-gray-600 mb-6 sm:mb-8 max-w-2xl">Інструмент для моментів, коли сил на довгі анкети немає — лише кілька секунд до першої практики.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <article class="flex flex-col items-start bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <img src="assets/icons/benefit-1.webp" alt="" class="w-16 h-16 mb-4" width="64" height="64" loading="lazy">
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Швидка самодопомога</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Перша практика запускається за 1–2 кліки: без реєстрації, оплати та довгих опитувань.</p>
+        </article>
+        <article class="flex flex-col items-start bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <img src="assets/icons/benefit-2.webp" alt="" class="w-16 h-16 mb-4" width="64" height="64" loading="lazy">
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Дихальні вправи</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Прості техніки, які м'яко знижують напругу. Ти сам обираєш темп і можеш зупинитися будь-коли.</p>
+        </article>
+        <article class="flex flex-col items-start bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 sm:col-span-2 lg:col-span-1">
+          <img src="assets/icons/benefit-3.webp" alt="" class="w-16 h-16 mb-4" width="64" height="64" loading="lazy">
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Аудіо-релакс</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Спокійні аудіо- та відеопрактики українською для відновлення після стресу та перед сном.</p>
+        </article>
+      </div>
+
+      <ul class="mt-6 flex flex-wrap gap-2 sm:gap-3 list-none p-0" aria-label="Принципи платформи">
+        <li class="inline-flex items-center gap-2 bg-white/80 border border-slate-200 rounded-full px-4 py-2 text-sm font-semibold text-gray-700"><i class="fa-solid fa-user-secret text-brand-600" aria-hidden="true"></i>Анонімно</li>
+        <li class="inline-flex items-center gap-2 bg-white/80 border border-slate-200 rounded-full px-4 py-2 text-sm font-semibold text-gray-700"><i class="fa-solid fa-hand-holding-heart text-brand-600" aria-hidden="true"></i>Безкоштовно</li>
+        <li class="inline-flex items-center gap-2 bg-white/80 border border-slate-200 rounded-full px-4 py-2 text-sm font-semibold text-gray-700"><i class="fa-solid fa-language text-brand-600" aria-hidden="true"></i>Українською</li>
+        <li class="inline-flex items-center gap-2 bg-white/80 border border-slate-200 rounded-full px-4 py-2 text-sm font-semibold text-gray-700"><i class="fa-solid fa-mobile-screen text-brand-600" aria-hidden="true"></i>З телефона</li>
+      </ul>
+    </section>
+
+    <!-- ==================== 4. SERVICES (Послуги — практики за станом) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="services" aria-labelledby="services-title">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-5">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900" id="services-title">Обери свій стан</h2>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">Короткі практики саморегуляції — від 1 до 2 хвилин</p>
+        </div>
+        <span class="text-xs font-bold text-brand-700 bg-brand-100 px-3 py-1 rounded-full w-fit" id="practice-count" aria-live="polite">6 практик</span>
+      </div>
+
+      <div class="flex flex-wrap gap-2 sm:gap-3 mb-6" role="group" aria-label="Фільтр практик за емоційним станом">
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-brand-500 bg-brand-100 text-brand-800 font-semibold text-sm hover:bg-brand-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="all" aria-pressed="true">Усі</button>
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-700 font-semibold text-sm hover:border-brand-500 hover:bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="anxiety" aria-pressed="false">Тривога</button>
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-700 font-semibold text-sm hover:border-brand-500 hover:bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="panic" aria-pressed="false">Паніка</button>
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-700 font-semibold text-sm hover:border-brand-500 hover:bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="fatigue" aria-pressed="false">Утома</button>
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-700 font-semibold text-sm hover:border-brand-500 hover:bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="sleep" aria-pressed="false">Безсоння</button>
+        <button class="mood-filter min-h-[44px] px-5 py-2 rounded-full border border-gray-300 bg-white text-gray-700 font-semibold text-sm hover:border-brand-500 hover:bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors" type="button" data-mood="sadness" aria-pressed="false">Смуток</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="practices-grid">
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="anxiety" aria-labelledby="p1">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Тривога</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>1 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p1">Знайди опору навколо</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Відчуй фізичну опору під стопами або спиною. Знайди поглядом три предмети синього кольору поруч.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Знайди опору навколо»</span></a>
+        </article>
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="panic" aria-labelledby="p2">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Паніка</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>1 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p2">Поміть предмети навколо</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Подивись навколо. Назви вголос колір і форму одного конкретного предмета перед тобою.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Поміть предмети навколо»</span></a>
+        </article>
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="fatigue" aria-labelledby="p3">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Утома</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>2 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p3">Коротка пауза</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Сядь зручно. Відпусти напруження в плечах, щелепі та долонях, якщо це комфортно зараз.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Коротка пауза»</span></a>
+        </article>
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="sleep" aria-labelledby="p4">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Безсоння</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>2 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p4">Тиха пауза перед сном</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Влаштуйся зручно й назви подумки три найтихіші звуки в кімнаті. Не змушуй себе спати негайно.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Тиха пауза перед сном»</span></a>
+        </article>
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="sadness" aria-labelledby="p5">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Смуток</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>1 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p5">Маленька турбота про себе</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Поміть, що прямо зараз могло б трохи підтримати тебе: склянка теплої води або теплий плед.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Маленька турбота про себе»</span></a>
+        </article>
+        <article class="practice-card flex flex-col bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300" data-mood="anxiety panic" aria-labelledby="p6">
+          <div class="flex items-center justify-between gap-2 mb-2"><span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Стрес</span><span class="text-xs font-medium text-gray-600"><i class="fa-regular fa-clock mr-1" aria-hidden="true"></i>2 хв</span></div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2" id="p6">Вправа 4-7-8</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Вдих через ніс на 4 секунди, м'яка пауза на 7, плавний видих ротом на 8. Якщо затримка некомфортна — просто дихай повільно.</p>
+          <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Вправа 4-7-8»</span></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 5. ABOUT / HOW IT WORKS (Про нас) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="about" aria-labelledby="about-title">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-3" id="about-title">Про нас</h2>
+          <p class="text-gray-700 leading-relaxed mb-3">«Спокій розуму» — студентський проєкт української смарт-платформи першої психологічної самодопомоги. Ми створюємо простий інструмент для людей, які живуть в умовах війни та постійного стресу.</p>
+          <p class="text-gray-700 leading-relaxed">Наш принцип — zero friction: жодних реєстрацій чи платіжних стін, мінімум тексту в момент стресу та м'який шлях до професійної допомоги, коли вона потрібна.</p>
+        </div>
+
+        <!-- Кадр з промо-відео, згенерованого в ЛР №3 (Kling AI) -->
+        <figure class="rounded-2xl overflow-hidden shadow-lg border border-white">
+          <img src="assets/images/about-calm.webp" alt="Спокійна фігура людини серед м'яких бірюзових хвиль" class="w-full h-auto aspect-video object-cover" width="800" height="450" loading="lazy">
+        </figure>
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-bold font-display text-gray-900 mt-12 mb-6" id="how-it-works">Як це працює</h3>
+      <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 list-none m-0 p-0">
+        <li class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4" aria-hidden="true">1</span>
+          <h4 class="text-lg font-bold text-gray-900 mb-1">Обери стан або SOS</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Можна не визначати стан точно, а обрати те, що ближче зараз.</p>
+        </li>
+        <li class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4" aria-hidden="true">2</span>
+          <h4 class="text-lg font-bold text-gray-900 mb-1">Отримай інструкцію</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Короткі та чіткі кроки без необхідності реєструватися чи платити.</p>
+        </li>
+        <li class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4" aria-hidden="true">3</span>
+          <h4 class="text-lg font-bold text-gray-900 mb-1">Спробуй у своєму темпі</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Ти контролюєш процес. Можна зупинити практику будь-якої миті.</p>
+        </li>
+        <li class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <span class="w-10 h-10 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center mb-4" aria-hidden="true">4</span>
+          <h4 class="text-lg font-bold text-gray-900 mb-1">Оціни свій стан</h4>
+          <p class="text-sm text-gray-600 leading-relaxed">Лише за бажанням. Відповідь необов'язкова та залишається приватною.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ==================== 6. MEDIA (Відеопрактика YouTube) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="media" aria-labelledby="media-title">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-3" id="media-title">Подихаймо разом</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">П'ятихвилинна практика глибокого дихання українською. Увімкни відео, сядь зручно й просто повторюй за голосом.</p>
+          <ul class="space-y-2 text-sm text-gray-700 list-none p-0">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1" aria-hidden="true"></i>Тривалість — близько 6 хвилин</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1" aria-hidden="true"></i>Підходить при тривозі та напрузі</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1" aria-hidden="true"></i>Можна зупинити будь-коли</li>
+          </ul>
+        </div>
+
+        <!-- ===== MEDIA: YouTube-відео (Поділитися → Вбудувати) =====
+             - youtube-nocookie.com: режим підвищеної приватності (без cookies до натискання Play);
+             - loading="lazy": фрейм вантажиться лише при прокручуванні до секції;
+             - title: обов'язкова назва фрейму для скрінрідерів (WCAG 4.1.2);
+             - referrerpolicy: потрібна YouTube для коректної роботи вбудованого плеєра;
+             - .media-frame--video: адаптивний контейнер aspect-ratio 16/9 зі style.css -->
+        <figure class="lg:col-span-3 w-full">
+          <div class="media-frame media-frame--video mx-auto">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/kOHSw5KTKw0?rel=0"
+              title="Відео: практика дихання для заспокоєння — 5 хвилин глибокого дихання"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+          <figcaption class="text-xs text-gray-600 mt-3 text-center">Відео: канал «Тиша — Медитації українською», YouTube</figcaption>
+        </figure>
+        <!-- ===== /MEDIA: YouTube ===== -->
+      </div>
+    </section>
+
+    <!-- ==================== 7. CTA (Заклик до дії) + SOS ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-900 text-white p-6 sm:p-10 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center" id="support" aria-labelledby="cta-title">
+      <div class="lg:col-span-2">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-display mb-3" id="cta-title">Почни з однієї хвилини</h2>
+        <p class="text-brand-100 leading-relaxed mb-6 max-w-xl">Обери стан, і ми запропонуємо коротку практику. Без реєстрації та без обов'язкових відповідей — просто зроби перший вдих.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#services" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-brand-50 text-brand-800 font-bold px-6 py-3 min-h-[48px] rounded-full shadow transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-800 focus:ring-white">
+            <i class="fa-solid fa-wind" aria-hidden="true"></i>Почати безкоштовно
+          </a>
+          <a href="tel:7333" class="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white border border-white/70 font-bold px-6 py-3 min-h-[48px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>Поговорити з людиною
+          </a>
+        </div>
+      </div>
+      <aside class="bg-white text-gray-800 p-6 rounded-2xl shadow-sm" aria-labelledby="contacts-title">
+        <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2" id="contacts-title">Якщо потрібна жива підтримка</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Платформа не викликає екстрені служби автоматично. У небезпеці — спершу перейди в безпечне місце.</p>
+        <ul class="text-sm space-y-1.5 list-none p-0">
+          <li><a class="font-bold text-brand-700 underline underline-offset-4" href="tel:7333">7333</a> — Lifeline Ukraine, лінія запобігання самогубствам</li>
+          <li><a class="font-bold text-brand-700 underline underline-offset-4" href="tel:112">112</a> — єдиний номер екстрених служб</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ==================== 8. CONTACTS + MAP (Розташування) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="contacts" aria-labelledby="map-title">
+      <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-6" id="map-title">Офлайн-хаб підтримки</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <address class="not-italic bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4 text-sm text-gray-700">
+          <p class="flex gap-3"><i class="fa-solid fa-location-dot text-brand-600 mt-0.5 w-4" aria-hidden="true"></i><span><strong class="block text-gray-900">Адреса</strong>м. Львів, вул. Степана Бандери, 12</span></p>
+          <p class="flex gap-3"><i class="fa-regular fa-clock text-brand-600 mt-0.5 w-4" aria-hidden="true"></i><span><strong class="block text-gray-900">Години роботи</strong>Пн–Пт, 10:00–18:00</span></p>
+          <p class="flex gap-3"><i class="fa-solid fa-envelope text-brand-600 mt-0.5 w-4" aria-hidden="true"></i><span><strong class="block text-gray-900">Пошта</strong><a class="text-brand-700 underline underline-offset-4" href="mailto:support@spokiy-rozumu.ua">support@spokiy-rozumu.ua</a></span></p>
+          <p class="text-xs text-gray-500">Адреса умовна — використана в навчальному проєкті для демонстрації інтеграції карти.</p>
+        </address>
+
+        <!-- ===== MEDIA: Google Maps (Поділитися → Вбудувати карту) =====
+             - figure + figcaption: семантична обгортка медіаконтенту;
+             - title: доступна назва фрейму для допоміжних технологій;
+             - loading="lazy": відкладене завантаження, не блокує LCP;
+             - .media-frame--map: адаптивний контейнер 4/3 (mobile) → 16/10 (desktop),
+               радіус, тінь і ширина беруться з CSS-змінних :root (принцип DRY) -->
+        <figure class="lg:col-span-2 w-full">
+          <div class="media-frame media-frame--map">
+            <iframe
+              src="https://maps.google.com/maps?q=%D0%B2%D1%83%D0%BB.%20%D0%A1%D1%82%D0%B5%D0%BF%D0%B0%D0%BD%D0%B0%20%D0%91%D0%B0%D0%BD%D0%B4%D0%B5%D1%80%D0%B8%2C%2012%2C%20%D0%9B%D1%8C%D0%B2%D1%96%D0%B2&amp;z=16&amp;hl=uk&amp;output=embed"
+              title="Інтерактивна карта: м. Львів, вул. Степана Бандери, 12"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+          <figcaption class="text-xs text-gray-600 mt-3">Карта Google Maps. Перетягуйте та масштабуйте, щоб побудувати маршрут.</figcaption>
+        </figure>
+        <!-- ===== /MEDIA: Google Maps ===== -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 9. FOOTER (Підвал) ==================== -->
+  <footer class="bg-slate-900 text-slate-300 pt-12 pb-8">
+    <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pb-10 border-b border-slate-800">
+        <div class="space-y-4">
+          <a class="flex items-center gap-3 text-white rounded-lg p-1 w-fit focus:outline-none focus:ring-2 focus:ring-brand-500" href="#top" aria-label="Спокій розуму — на початок сторінки">
+            <img src="assets/images/logo.svg" alt="" class="w-8 h-8 object-contain" width="32" height="32" loading="lazy">
+            <span class="text-lg font-bold">Спокій розуму</span>
+          </a>
+          <p class="text-sm text-slate-400 leading-relaxed">Українська смарт-платформа першої психологічної самодопомоги без бар'єрів.</p>
+        </div>
+        <div>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Навігація</h2>
+          <ul class="space-y-2.5 text-sm list-none m-0 p-0">
+            <li><a href="#benefits" class="hover:text-white transition-colors">Переваги</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">Практики</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">Про нас</a></li>
+            <li><a href="#media" class="hover:text-white transition-colors">Відеопрактика</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Допомога</h2>
+          <ul class="space-y-2.5 text-sm list-none m-0 p-0">
+            <li><a href="#support" class="hover:text-white transition-colors">SOS та гарячі лінії</a></li>
+            <li><a href="#contacts" class="hover:text-white transition-colors">Офлайн-хаб на карті</a></li>
+            <li><a href="#how-it-works" class="hover:text-white transition-colors">Як це працює</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Спільнота</h2>
+          <p class="text-sm text-slate-400 mb-4">Маєте пропозиції чи запитання? Пишіть нам:</p>
+          <div class="flex items-center gap-3">
+            <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Telegram-канал платформи"><i class="fa-brands fa-telegram text-lg" aria-hidden="true"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Instagram-профіль"><i class="fa-brands fa-instagram text-lg" aria-hidden="true"></i></a>
+            <a href="mailto:support@spokiy-rozumu.ua" class="w-11 h-11 rounded-full bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Написати на пошту підтримки"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p class="text-center md:text-left max-w-2xl" id="privacy">Платформа надає інструменти самодопомоги та не замінює очної медичної чи психотерапевтичної допомоги. У кризовому стані звертайтеся до екстрених служб.</p>
+        <p class="whitespace-nowrap">&copy; 2026 «Спокій розуму»</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Мінімальний JS: мобільне меню + фільтр практик за станом -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const setMenu = (open) => {
+        toggleBtn.setAttribute('aria-expanded', String(open));
+        toggleBtn.setAttribute('aria-label', open ? 'Закрити головне меню' : 'Відкрити головне меню');
+        mobileMenu.classList.toggle('hidden', !open);
+        menuIcon.classList.toggle('fa-bars', !open);
+        menuIcon.classList.toggle('fa-xmark', open);
+      };
+      toggleBtn.addEventListener('click', () => setMenu(toggleBtn.getAttribute('aria-expanded') !== 'true'));
+      mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+      const filters = document.querySelectorAll('.mood-filter');
+      const cards = document.querySelectorAll('.practice-card');
+      const counter = document.getElementById('practice-count');
+      const ACTIVE = ['border-brand-500', 'bg-brand-100', 'text-brand-800'];
+      const IDLE = ['border-gray-300', 'bg-white', 'text-gray-700'];
+      filters.forEach((btn) => btn.addEventListener('click', () => {
+        const mood = btn.dataset.mood;
+        filters.forEach((b) => {
+          const on = b === btn;
+          b.setAttribute('aria-pressed', String(on));
+          b.classList.remove(...(on ? IDLE : ACTIVE));
+          b.classList.add(...(on ? ACTIVE : IDLE));
+        });
+        let shown = 0;
+        cards.forEach((card) => {
+          const match = mood === 'all' || card.dataset.mood.split(' ').includes(mood);
+          card.classList.toggle('hidden', !match);
+          if (match) shown++;
+        });
+        counter.textContent = shown + (shown === 1 ? ' практика' : shown < 5 ? ' практики' : ' практик');
+      }));
+    });
+  </script>
+</body>
+</html>

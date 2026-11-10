@@ -1,0 +1,84 @@
+/* ==========================================================================
+   КОРИСТУВАЦЬКІ СТИЛІ ПРОЄКТУ «СПОКІЙ РОЗУМУ» (Лабораторна робота №7)
+   Файл: css/style.css
+   Призначення: брендові ефекти, фоновий градієнт, токени медіаінтеграцій
+   (відео, карта) та a11y-правила, які недоцільно виражати класами Tailwind.
+   ========================================================================== */
+
+/* ---------- 1. Дизайн-токени медіаінтеграцій (DRY: одне місце для значень) ---------- */
+:root {
+  --media-max-width: 960px;      /* максимальна ширина плеєра та карти */
+  --media-radius: 1rem;          /* радіус закруглення (= rounded-2xl) */
+  --media-shadow: 0 10px 30px -12px rgba(27, 50, 62, 0.35);
+  --media-gap: 1.5rem;           /* відступ між медіаблоками */
+  --media-ratio-video: 16 / 9;   /* пропорції YouTube-плеєра */
+  --media-ratio-map: 4 / 3;      /* пропорції карти на мобільних */
+  --media-ratio-map-lg: 16 / 10; /* пропорції карти на десктопі */
+}
+
+/* ---------- 2. Брендовий фон сторінки ---------- */
+body {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(74, 130, 155, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(229, 91, 91, 0.08) 0px, transparent 50%),
+    linear-gradient(rgba(244, 247, 249, 0.86), rgba(244, 247, 249, 0.93)),
+    url("../assets/images/hero-calm.webp");
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* ---------- 3. Адаптивні контейнери для iframe (YouTube + Google Maps) ---------- */
+.media-frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--media-max-width);
+  overflow: hidden;
+  border-radius: var(--media-radius);
+  box-shadow: var(--media-shadow);
+  background: #e1edf1; /* плейсхолдер до завантаження фрейму — без зсуву макета (CLS) */
+}
+
+.media-frame--video { aspect-ratio: var(--media-ratio-video); }
+.media-frame--map   { aspect-ratio: var(--media-ratio-map); }
+
+@media (min-width: 1024px) {
+  .media-frame--map { aspect-ratio: var(--media-ratio-map-lg); }
+}
+
+.media-frame > iframe,
+.media-frame > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* ---------- 4. Кастомний скролбар ---------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ---------- 5. Анімація дихального циклу для Hero-бейджа ---------- */
+@keyframes breathing-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.9; }
+  50%      { transform: scale(1.08); opacity: 1;   }
+}
+.animate-breath { animation: breathing-pulse 4s ease-in-out infinite; }
+
+/* ---------- 6. Доступність: зменшення руху (WCAG 2.2 AA) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
