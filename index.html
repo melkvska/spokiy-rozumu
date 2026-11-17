@@ -34,7 +34,9 @@
           },
           maxWidth: { container: '1140px' }
         }
-      }
+      },
+      // класи станів полів, які додає validation.js динамічно
+      safelist: ['border-red-500','bg-red-50','border-green-600','bg-green-50','ring-red-100','ring-green-100','flex','hidden','overflow-hidden']
     }
   </script>
 
@@ -60,7 +62,7 @@
           <li><a href="#services" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Практики</a></li>
           <li><a href="#about" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Про нас</a></li>
           <li><a href="#media" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Відео</a></li>
-          <li><a href="#contacts" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Контакти</a></li>
+          <li><a href="#feedback" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Зв'язок</a></li>
         </ul>
       </nav>
 
@@ -82,7 +84,7 @@
           <li><a href="#services" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-spa text-brand-500 w-5" aria-hidden="true"></i>Практики</a></li>
           <li><a href="#about" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-heart text-brand-500 w-5" aria-hidden="true"></i>Про нас</a></li>
           <li><a href="#media" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-circle-play text-brand-500 w-5" aria-hidden="true"></i>Відео</a></li>
-          <li><a href="#contacts" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-location-dot text-brand-500 w-5" aria-hidden="true"></i>Контакти</a></li>
+          <li><a href="#feedback" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-envelope text-brand-500 w-5" aria-hidden="true"></i>Зв'язок</a></li>
         </ul>
       </nav>
     </div>
@@ -314,7 +316,93 @@
       </aside>
     </section>
 
-    <!-- ==================== 8. CONTACTS + MAP (Розташування) ==================== -->
+    <!-- ==================== 8. FEEDBACK FORM (Форма зворотного зв'язку, ЛР №9) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="feedback" aria-labelledby="feedback-title">
+      <div class="max-w-3xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-8 md:p-10">
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-2" id="feedback-title">Напиши нам</h2>
+        <p class="text-gray-600 mb-6">Пропозиція, питання чи ідея нової практики — ми прочитаємо кожне повідомлення. Поля з <span class="text-sos-dark font-bold" aria-hidden="true">*</span> обов'язкові.</p>
+
+        <!-- novalidate: вимикаємо стандартні підказки браузера, перевірку виконує validation.js -->
+        <form id="feedbackForm" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5" novalidate aria-describedby="feedback-note">
+
+          <!-- Ім'я -->
+          <div>
+            <label for="username" class="block text-sm font-bold text-gray-800 mb-1.5">Ім'я <span class="text-sos-dark" aria-hidden="true">*</span></label>
+            <input type="text" id="username" name="username" autocomplete="given-name" required minlength="2" maxlength="50"
+              aria-describedby="usernameError" aria-invalid="false"
+              class="field block w-full min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100 transition-colors">
+            <p id="usernameError" class="field-error hidden mt-1.5 text-sm text-red-700" aria-live="polite"></p>
+          </div>
+
+          <!-- Емейл -->
+          <div>
+            <label for="email" class="block text-sm font-bold text-gray-800 mb-1.5">Email <span class="text-sos-dark" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required maxlength="100"
+              aria-describedby="emailError" aria-invalid="false"
+              class="field block w-full min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100 transition-colors">
+            <p id="emailError" class="field-error hidden mt-1.5 text-sm text-red-700" aria-live="polite"></p>
+          </div>
+
+          <!-- Телефон -->
+          <div>
+            <label for="phone" class="block text-sm font-bold text-gray-800 mb-1.5">Телефон <span class="text-sos-dark" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required maxlength="20"
+              aria-describedby="phoneHint phoneError" aria-invalid="false"
+              class="field block w-full min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100 transition-colors">
+            <p id="phoneHint" class="mt-1.5 text-xs text-gray-600">Формат: +380XXXXXXXXX, наприклад +380501234567</p>
+            <p id="phoneError" class="field-error hidden mt-1 text-sm text-red-700" aria-live="polite"></p>
+          </div>
+
+          <!-- Тема (необов'язкове поле) -->
+          <div>
+            <label for="topic" class="block text-sm font-bold text-gray-800 mb-1.5">Тема звернення</label>
+            <select id="topic" name="topic"
+              class="block w-full min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100 transition-colors">
+              <option value="question">Запитання</option>
+              <option value="idea">Ідея нової практики</option>
+              <option value="bug">Повідомити про помилку</option>
+              <option value="partner">Співпраця</option>
+            </select>
+          </div>
+
+          <!-- Повідомлення (на всю ширину) -->
+          <div class="md:col-span-2">
+            <div class="flex items-baseline justify-between gap-2 mb-1.5">
+              <label for="message" class="block text-sm font-bold text-gray-800">Повідомлення <span class="text-sos-dark" aria-hidden="true">*</span></label>
+              <span id="messageCounter" class="text-xs text-gray-600" aria-live="off">0 / 1000</span>
+            </div>
+            <textarea id="message" name="message" rows="5" required minlength="10" maxlength="1000"
+              aria-describedby="messageError" aria-invalid="false"
+              class="field block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100 transition-colors resize-y"></textarea>
+            <p id="messageError" class="field-error hidden mt-1.5 text-sm text-red-700" aria-live="polite"></p>
+          </div>
+
+          <!-- Згода з політикою конфіденційності -->
+          <div class="md:col-span-2">
+            <div class="flex items-start gap-3">
+              <input type="checkbox" id="agreement" name="agreement" required
+                aria-describedby="agreementError" aria-invalid="false"
+                class="mt-0.5 h-6 w-6 shrink-0 rounded border-gray-400 accent-brand-600 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100">
+              <label for="agreement" class="text-sm text-gray-700 leading-relaxed cursor-pointer">
+                Погоджуюсь з <a href="#privacy" class="text-brand-700 font-bold underline underline-offset-4 hover:text-brand-800">політикою конфіденційності</a> та обробкою моїх даних для відповіді. <span class="text-sos-dark" aria-hidden="true">*</span>
+              </label>
+            </div>
+            <p id="agreementError" class="field-error hidden mt-1.5 text-sm text-red-700" aria-live="polite"></p>
+          </div>
+
+          <!-- Кнопка "Надіслати" -->
+          <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p id="feedback-note" class="text-xs text-gray-600">Навчальна форма: дані перевіряються в браузері та нікуди не передаються.</p>
+            <button type="submit" id="submitBtn"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-8 py-3 min-h-[48px] rounded-full shadow-sm hover:shadow-md transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-500">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Надіслати</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== 9. CONTACTS + MAP (Розташування) ==================== -->
     <section class="mt-16 sm:mt-20 scroll-mt-24" id="contacts" aria-labelledby="map-title">
       <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900 mb-6" id="map-title">Офлайн-хаб підтримки</h2>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
@@ -372,6 +460,7 @@
           <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Допомога</h2>
           <ul class="space-y-2.5 text-sm list-none m-0 p-0">
             <li><a href="#support" class="hover:text-white transition-colors">SOS та гарячі лінії</a></li>
+            <li><a href="#feedback" class="hover:text-white transition-colors">Форма зворотного зв'язку</a></li>
             <li><a href="#contacts" class="hover:text-white transition-colors">Офлайн-хаб на карті</a></li>
             <li><a href="#how-it-works" class="hover:text-white transition-colors">Як це працює</a></li>
           </ul>
@@ -392,6 +481,23 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==================== MODAL: імітація успішного надсилання (ЛР №9) ==================== -->
+  <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" data-close-modal></div>
+    <div class="relative w-full max-w-md bg-white rounded-2xl shadow-xl p-6 sm:p-8 text-center">
+      <div class="mx-auto mb-4 w-14 h-14 rounded-full bg-green-100 text-green-700 flex items-center justify-center" aria-hidden="true">
+        <i class="fa-solid fa-check text-2xl"></i>
+      </div>
+      <h2 id="modalTitle" class="text-xl sm:text-2xl font-bold font-display text-gray-900 mb-2" tabindex="-1">Дякуємо, <span id="modalName"></span>!</h2>
+      <p id="modalText" class="text-gray-600 leading-relaxed mb-6">Форма успішно пройшла клієнтську валідацію. Це демонстрація успішного надсилання: дані на сервер не передаються.</p>
+      <button type="button" id="modalClose" data-close-modal
+        class="w-full sm:w-auto inline-flex items-center justify-center bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-3 min-h-[48px] rounded-full transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-500">Закрити</button>
+    </div>
+  </div>
+
+  <!-- Валідація форми зворотного зв'язку (Vanilla JS, ЛР №9) -->
+  <script src="assets/js/validation.js" defer></script>
 
   <!-- Мінімальний JS: мобільне меню + фільтр практик за станом -->
   <script>
