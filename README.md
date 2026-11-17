@@ -8,7 +8,7 @@
 
 - GitHub Pages: https://melkvska.github.io/spokiy-rozumu/
 - Netlify: https://spokiy-rozumu-lab7.netlify.app
-- Vercel: https://spokiy-rozumu.vercel.app
+- Vercel: https://spokiy-rozumu-6xl9.vercel.app
 
 ## ЛР №9 — форма зворотного зв'язку
 
