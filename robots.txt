@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spokiy-rozumu-6xl9.vercel.app/sitemap.xml
