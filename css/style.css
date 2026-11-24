@@ -82,3 +82,19 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- ЛР №12: слайдер відгуків до завантаження Swiper (без стрибка макета) ---------- */
+.reviews-swiper:not(.swiper-initialized) { overflow: hidden; }
+.reviews-swiper:not(.swiper-initialized) .swiper-wrapper { display: flex; gap: 24px; }
+.reviews-swiper:not(.swiper-initialized) .swiper-slide { flex: 0 0 100%; }
+@media (min-width: 768px)  { .reviews-swiper:not(.swiper-initialized) .swiper-slide { flex-basis: calc((100% - 24px) / 2); } }
+@media (min-width: 1024px) { .reviews-swiper:not(.swiper-initialized) .swiper-slide { flex-basis: calc((100% - 48px) / 3); } }
+
+/* ---------- ЛР №12: крапки пагінації — область дотику 24×24 px (WCAG 2.5.8) ---------- */
+.reviews-swiper .swiper-pagination-bullet {
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+  background-clip: content-box;
+  margin: 0 2px !important;
+}

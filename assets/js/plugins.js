@@ -1,10 +1,10 @@
 /* ==========================================================================
    plugins.js — ініціалізація JS-плагінів (Vanilla JS, без jQuery)
    Проєкт «Спокій розуму», лабораторна робота №10
-   Бібліотеки підключені через CDN jsDelivr у index.html:
-     Swiper 11  — слайдер відгуків
-     Fancybox 5 — галерея-лайтбокс «Простір спокою»
-     Typed.js 2 — ефект друкування тексту в Hero
+   Бібліотеки з CDN jsDelivr:
+     Swiper 11  — слайдер відгуків           (завантажується за потреби, ЛР №12)
+     Fancybox 5 — галерея-лайтбокс           (завантажується за потреби, ЛР №12)
+     Typed.js 2 — ефект друкування в Hero    (підключений у index.html з defer)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,8 +13,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Користувачі з налаштуванням «зменшити рух» не отримують автоанімацій (WCAG 2.3.3)
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- 0. Завантаження бібліотек за потреби (ЛР №12, Performance) ----------
+     Swiper і Fancybox не потрібні для першого екрану, тому їхні CSS/JS
+     підвантажуються, коли секція наближається до області перегляду (за 600 px). */
+  const CDN = 'https://cdn.jsdelivr.net/npm/';
+  const loaded = new Map();
+  const loadCss = (href) => {
+    if (!document.querySelector(`link[href="${href}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  };
+  const loadScript = (src) => {
+    if (!loaded.has(src)) {
+      loaded.set(src, new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Не вдалося завантажити ${src}`));
+        document.head.appendChild(script);
+      }));
+    }
+    return loaded.get(src);
+  };
+  const whenNear = (el, callback) => {
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { callback(); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); callback(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(el);
+  };
+
   /* ---------- 1. Swiper.js — слайдер відгуків ---------- */
-  if (window.Swiper && document.querySelector('.reviews-swiper')) {
+  function initSwiper() {
     const reviewsSwiper = new Swiper('.reviews-swiper', {
       loop: true,
       spaceBetween: 24,
@@ -62,8 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  whenNear(document.querySelector('.reviews-swiper'), () => {
+    loadCss(`${CDN}swiper@11.1.14/swiper-bundle.min.css`);
+    loadScript(`${CDN}swiper@11.1.14/swiper-bundle.min.js`)
+      .then(initSwiper)
+      .catch((err) => console.warn('[plugins]', err.message)); // без Swiper відгуки лишаються списком карток
+  });
+
   /* ---------- 2. Fancybox v5 — галерея «Простір спокою» ---------- */
-  if (window.Fancybox) {
+  function initFancybox() {
     // Зв'язування плагіна з data-атрибутом: усі елементи з однаковим значенням → один альбом
     Fancybox.bind('[data-fancybox="calm-gallery"]', {
       Carousel: { transition: 'fade' },       // плавне згасання між фото
@@ -79,6 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   }
+
+  whenNear(document.getElementById('gallery'), () => {
+    loadCss(`${CDN}@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css`);
+    loadScript(`${CDN}@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js`)
+      .then(initFancybox)
+      .catch((err) => console.warn('[plugins]', err.message)); // без Fancybox посилання просто відкривають фото
+  });
 
   /* ---------- 3. Typed.js — друкування тексту в Hero ---------- */
   const typedEl = document.getElementById('typed-text');
