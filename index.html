@@ -87,6 +87,7 @@
         <ul class="flex flex-col gap-1 list-none m-0 p-0">
           <li><a href="#benefits" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-star text-brand-500 w-5" aria-hidden="true"></i>Переваги</a></li>
           <li><a href="#services" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-spa text-brand-500 w-5" aria-hidden="true"></i>Практики</a></li>
+          <li><a href="#breath-planner" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-wind text-brand-500 w-5" aria-hidden="true"></i>Дихальна сесія</a></li>
           <li><a href="#about" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-heart text-brand-500 w-5" aria-hidden="true"></i>Про нас</a></li>
           <li><a href="#media" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-circle-play text-brand-500 w-5" aria-hidden="true"></i>Відео</a></li>
           <li><a href="#gallery" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-images text-brand-500 w-5" aria-hidden="true"></i>Галерея</a></li>
@@ -225,6 +226,102 @@
           <p class="text-sm text-gray-600 leading-relaxed mb-5 flex-grow">Вдих через ніс на 4 секунди, м'яка пауза на 7, плавний видих ротом на 8. Якщо затримка некомфортна — просто дихай повільно.</p>
           <a href="#media" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm py-2.5 px-4 min-h-[44px] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"><i class="fa-solid fa-play text-xs" aria-hidden="true"></i>Почати вправу<span class="sr-only"> «Вправа 4-7-8»</span></a>
         </article>
+      </div>
+    </section>
+
+    <!-- ==================== 4.1 BREATH PLANNER (Інтерактивний віджет, ЛР №11) ====================
+         Конструктор дихальної сесії: техніка (select) + цикли (number/range) + темп (radio) + етапи (checkbox)
+         → тривалість, план сесії та покроковий дихальний гід. Логіка — assets/js/widget.js -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="breath-planner" aria-labelledby="planner-title">
+      <div class="mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900" id="planner-title">Склади свою дихальну сесію</h2>
+        <p class="text-gray-600 mt-2 max-w-2xl">Обери техніку, кількість циклів і темп — тривалість та план сесії оновлюються одразу. Потім натисни «Почати», і гід підкаже, коли вдихати й видихати.</p>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <!-- Параметри -->
+        <form id="bp-form" class="lg:col-span-3 space-y-6" novalidate aria-describedby="bp-form-note">
+          <div>
+            <label for="bp-technique" class="block text-sm font-bold text-gray-800 mb-1.5">Техніка дихання</label>
+            <select id="bp-technique" name="technique" aria-describedby="bp-technique-hint"
+              class="block w-full min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100">
+              <option value="478" selected>4-7-8 · заспокоєння перед сном</option>
+              <option value="box">Квадратне 4-4-4-4 · фокус і контроль</option>
+              <option value="coherent">Резонансне 5-5 · рівновага</option>
+              <option value="calm">Подовжений видих 4-6 · зняти напругу</option>
+            </select>
+            <p id="bp-technique-hint" class="mt-1.5 text-sm text-gray-600">Вдих 4 с · затримка 7 с · видих 8 с — 19 секунд на цикл.</p>
+          </div>
+
+          <div>
+            <div class="flex items-end justify-between gap-3 mb-1.5">
+              <label for="bp-cycles" class="block text-sm font-bold text-gray-800">Кількість циклів</label>
+              <span class="text-xs text-gray-500">від 1 до 30</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <input type="number" id="bp-cycles" name="cycles" value="4" min="1" max="30" step="1" required inputmode="numeric"
+                aria-describedby="bp-cycles-error" aria-invalid="false"
+                class="w-24 shrink-0 min-h-[48px] rounded-xl border border-gray-300 bg-white px-4 text-base text-gray-900 text-center hover:border-brand-500 focus:outline-none focus-visible:border-brand-500 focus-visible:ring-4 focus-visible:ring-brand-100">
+              <input type="range" id="bp-cycles-range" min="1" max="30" step="1" value="4" aria-label="Кількість циклів, повзунок"
+                class="flex-1 min-w-0 h-2 accent-brand-600 cursor-pointer">
+            </div>
+            <p id="bp-cycles-error" class="hidden mt-1.5 text-sm text-red-700" role="alert"></p>
+          </div>
+
+          <fieldset>
+            <legend class="block text-sm font-bold text-gray-800 mb-2">Темп</legend>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 min-h-[48px] px-4 rounded-xl border border-gray-300 hover:border-brand-500 cursor-pointer has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                <input type="radio" id="bp-pace-normal" name="pace" value="1" checked class="h-5 w-5 accent-brand-600">
+                <span class="text-sm text-gray-800"><b>Звичайний</b> — як написано в техніці</span>
+              </label>
+              <label class="flex items-center gap-3 min-h-[48px] px-4 rounded-xl border border-gray-300 hover:border-brand-500 cursor-pointer has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+                <input type="radio" id="bp-pace-slow" name="pace" value="1.25" class="h-5 w-5 accent-brand-600">
+                <span class="text-sm text-gray-800"><b>Повільний</b> — кожна фаза +25 %</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="block text-sm font-bold text-gray-800 mb-2">Додаткові етапи</legend>
+            <div class="space-y-3">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="bp-warmup" name="warmup" class="mt-0.5 h-5 w-5 shrink-0 accent-brand-600">
+                <span class="text-sm text-gray-800">Розминка: розслабити плечі та щелепу <span class="text-gray-500">(+1 хв)</span></span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="bp-grounding" name="grounding" class="mt-0.5 h-5 w-5 shrink-0 accent-brand-600">
+                <span class="text-sm text-gray-800">Заземлення 5-4-3-2-1 наприкінці <span class="text-gray-500">(+1,5 хв)</span></span>
+              </label>
+            </div>
+          </fieldset>
+          <p id="bp-form-note" class="text-xs text-gray-500">Розрахунок виконується в браузері, дані нікуди не передаються.</p>
+        </form>
+
+        <!-- Результат + гід -->
+        <div class="lg:col-span-2 rounded-2xl bg-brand-50 border border-brand-100 p-5 sm:p-6 flex flex-col">
+          <div aria-live="polite" aria-atomic="true">
+            <p class="text-sm font-bold text-brand-700 uppercase tracking-wide">Тривалість сесії</p>
+            <p class="mt-1 font-display font-bold text-gray-900 text-5xl tabular-nums break-words" id="bp-total">1:16</p>
+            <p class="mt-1 text-sm text-gray-600" id="bp-summary">4 цикли · 4-7-8 · звичайний темп</p>
+          </div>
+
+          <h3 class="mt-5 text-sm font-bold text-gray-800">План сесії</h3>
+          <ol id="bp-steps" class="mt-2 space-y-1.5 text-sm text-gray-700 list-decimal pl-5"></ol>
+
+          <div class="mt-6 flex flex-col items-center text-center">
+            <div id="bp-circle" aria-hidden="true"
+              class="w-32 h-32 rounded-full bg-white border-4 border-brand-200 shadow-inner flex items-center justify-center transition-transform ease-in-out duration-1000">
+              <span id="bp-count" class="font-display text-3xl font-bold text-brand-700 tabular-nums">—</span>
+            </div>
+            <p id="bp-phase" class="mt-3 min-h-[1.5rem] font-bold text-gray-800" aria-live="assertive">Готові, коли будете ви</p>
+            <button type="button" id="bp-start" aria-pressed="false"
+              class="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-8 py-3 min-h-[48px] rounded-full shadow-sm transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-500">
+              <i class="fa-solid fa-play" aria-hidden="true"></i><span>Почати сесію</span>
+            </button>
+            <p class="mt-3 text-xs text-gray-500">Якщо стане некомфортно — зупиніться й дихайте як звично.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -594,6 +691,7 @@
           <ul class="space-y-2.5 text-sm list-none m-0 p-0">
             <li><a href="#benefits" class="hover:text-white transition-colors">Переваги</a></li>
             <li><a href="#services" class="hover:text-white transition-colors">Практики</a></li>
+            <li><a href="#breath-planner" class="hover:text-white transition-colors">Конструктор дихальної сесії</a></li>
             <li><a href="#about" class="hover:text-white transition-colors">Про нас</a></li>
             <li><a href="#media" class="hover:text-white transition-colors">Відеопрактика</a></li>
             <li><a href="#gallery" class="hover:text-white transition-colors">Галерея «Простір спокою»</a></li>
@@ -648,6 +746,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
   <script src="assets/js/plugins.js" defer></script>
+
+  <!-- ЛР №11: інтерактивний віджет «Конструктор дихальної сесії» -->
+  <script src="assets/js/widget.js" defer></script>
 
   <!-- Мінімальний JS: мобільне меню + фільтр практик за станом -->
   <script>
