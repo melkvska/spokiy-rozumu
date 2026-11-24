@@ -106,13 +106,15 @@
     el.cycles.setAttribute('aria-invalid', 'true');
     el.cycles.classList.add('border-red-500', 'bg-red-50');
     el.error.textContent = message;           // textContent — без innerHTML
+    el.error.classList.replace('text-brand-700', 'text-red-700');
     el.error.classList.remove('hidden');
   }
 
   function showNote(note) {
     el.cycles.setAttribute('aria-invalid', 'false');
     el.cycles.classList.remove('border-red-500', 'bg-red-50');
-    el.error.textContent = note;
+    el.error.textContent = note;              // інформаційна підказка (округлення) — не червоним
+    el.error.classList.replace('text-red-700', 'text-brand-700');
     el.error.classList.toggle('hidden', !note);
   }
 
@@ -122,7 +124,8 @@
   function render() {
     const techniqueKey = getTechniqueKey();
     const t = TECHNIQUES[techniqueKey];
-    el.hint.textContent = `${t.phases.map(([l, s]) => `${l.toLowerCase()} ${s} с`).join(' · ')} — ${t.phases.reduce((a, [, s]) => a + s, 0)} секунд на цикл.`;
+    const hint = `${t.phases.map(([l, s]) => `${l.toLowerCase()} ${s} с`).join(' · ')} — ${t.phases.reduce((a, [, s]) => a + s, 0)} секунд на цикл.`;
+    el.hint.textContent = hint.charAt(0).toUpperCase() + hint.slice(1);
 
     const parsed = parseCycles();
     if (!parsed.ok) {
