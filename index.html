@@ -40,6 +40,10 @@
     }
   </script>
 
+  <!-- ЛР №10: стилі плагінів через CDN (jsDelivr) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css">
+
   <!-- Custom Brand Styles (токени медіа, фон, a11y) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -62,6 +66,7 @@
           <li><a href="#services" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Практики</a></li>
           <li><a href="#about" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Про нас</a></li>
           <li><a href="#media" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Відео</a></li>
+          <li><a href="#reviews" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Відгуки</a></li>
           <li><a href="#feedback" class="text-gray-600 hover:text-brand-600 hover:bg-brand-50 font-medium text-sm xl:text-base transition-colors rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500">Зв'язок</a></li>
         </ul>
       </nav>
@@ -84,6 +89,8 @@
           <li><a href="#services" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-spa text-brand-500 w-5" aria-hidden="true"></i>Практики</a></li>
           <li><a href="#about" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-heart text-brand-500 w-5" aria-hidden="true"></i>Про нас</a></li>
           <li><a href="#media" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-circle-play text-brand-500 w-5" aria-hidden="true"></i>Відео</a></li>
+          <li><a href="#gallery" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-images text-brand-500 w-5" aria-hidden="true"></i>Галерея</a></li>
+          <li><a href="#reviews" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-comment-dots text-brand-500 w-5" aria-hidden="true"></i>Відгуки</a></li>
           <li><a href="#feedback" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-brand-50 hover:text-brand-600 font-medium"><i class="fa-solid fa-envelope text-brand-500 w-5" aria-hidden="true"></i>Зв'язок</a></li>
         </ul>
       </nav>
@@ -102,6 +109,10 @@
         <h1 class="text-[2rem] leading-tight sm:text-5xl lg:text-[3.4rem] font-bold font-display text-gray-900" id="page-title">
           Допомога тут і зараз
         </h1>
+        <p class="text-lg sm:text-2xl font-bold text-brand-700 min-h-[1.75rem] sm:min-h-[2rem]">
+          <span class="sr-only">Дихальна вправа за 1 хвилину, техніка заземлення 5-4-3-2-1, аудіо-релакс перед сном.</span>
+          <span id="typed-text" aria-hidden="true">Дихальна вправа за 1 хвилину.</span>
+        </p>
         <p class="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
           Обери свій стан — і за 1–2 кліки отримай дихальну вправу, техніку заземлення або аудіо-релакс. Можна зупинитися будь-коли.
         </p>
@@ -292,6 +303,134 @@
       </div>
     </section>
 
+    <!-- ==================== 6.1 GALLERY (Fancybox v5, ЛР №10) ====================
+         Графіка з ЛР №3: банер Hero, ілюстрації та іконки практик.
+         Усі посилання мають однаковий data-fancybox="calm-gallery" → один альбом. -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="gallery" aria-labelledby="gallery-title">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900" id="gallery-title">Простір спокою</h2>
+          <p class="text-gray-600 mt-2 max-w-2xl">Візуальні образи наших практик. Натисни на зображення, щоб відкрити галерею, збільшити його та гортати стрілками.</p>
+        </div>
+        <p class="text-sm text-gray-500"><i class="fa-solid fa-images text-brand-500 mr-1" aria-hidden="true"></i>6 зображень</p>
+      </div>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 list-none p-0">
+        <li><a href="assets/gallery/identity.webp" data-fancybox="calm-gallery" data-caption="Айдентика «Спокій розуму» — логотип, створений у ЛР №3" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/identity-thumb.webp" alt="Логотип: м'які геометричні форми у вигляді листка" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Айдентика бренду</span></a></li>
+        <li><a href="assets/gallery/balance.webp" data-fancybox="calm-gallery" data-caption="«Стан рівноваги» — саморегуляція за 1 хвилину" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/balance-thumb.webp" alt="Абстрактна фігура в позі лотоса з пастельними потоками" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Стан рівноваги</span></a></li>
+        <li><a href="assets/gallery/sea.webp" data-fancybox="calm-gallery" data-caption="«Морський берег» — кадр із відеорелаксу" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/sea-thumb.webp" alt="Силует людини серед спокійних бірюзових хвиль" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Морський берег</span></a></li>
+        <li><a href="assets/gallery/grounding.webp" data-fancybox="calm-gallery" data-caption="Швидка самодопомога — техніка заземлення" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/grounding-thumb.webp" alt="Іконка: людина в колі підтримки" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Заземлення</span></a></li>
+        <li><a href="assets/gallery/breathing.webp" data-fancybox="calm-gallery" data-caption="Дихальні вправи — 4-7-8 та квадратне дихання" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/breathing-thumb.webp" alt="Іконка: людина з променями навколо" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Дихальні вправи</span></a></li>
+        <li><a href="assets/gallery/audio.webp" data-fancybox="calm-gallery" data-caption="Аудіо-релакс — звуки природи перед сном" class="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg bg-white border border-white transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500">
+          <img src="assets/gallery/audio-thumb.webp" alt="Іконка: навушники" width="600" height="400" loading="lazy" class="w-full aspect-[3/2] object-cover group-hover:scale-[1.03] transition duration-300 cursor-zoom-in">
+          <span class="block px-4 py-3 text-sm font-bold text-gray-800">Аудіо-релакс</span></a></li>
+      </ul>
+    </section>
+
+    <!-- ==================== 6.2 REVIEWS (Swiper.js v11, ЛР №10) ==================== -->
+    <section class="mt-16 sm:mt-20 scroll-mt-24" id="reviews" aria-labelledby="reviews-title">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold font-display text-gray-900" id="reviews-title">Що кажуть користувачі</h2>
+          <p class="text-gray-600 mt-2 max-w-2xl">Короткі історії про те, як практики допомагають у складні моменти.</p>
+        </div>
+        <button type="button" id="reviewsToggle" aria-pressed="false"
+          class="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-full border border-gray-300 bg-white text-sm font-bold text-gray-700 hover:border-brand-500 hover:text-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100">
+          <i class="fa-solid fa-pause" aria-hidden="true"></i><span>Зупинити прокрутку</span>
+        </button>
+      </div>
+
+      <div class="swiper reviews-swiper !pb-12">
+        <div class="swiper-wrapper">
+          <!-- slide 1 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-2.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 5 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«Перед іспитом серце калатало. Вправа 4-7-8 за дві хвилини повернула мені нормальне дихання.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">ОК</span>
+              <span><span class="block font-bold text-gray-900">Олена К.</span><span class="block text-xs text-gray-500">Студентка · дихальні вправи</span></span>
+            </footer>
+          </article>
+          <!-- slide 2 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-3.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 5 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«Вмикаю аудіо-релакс перед сном після нічних змін. Засинаю швидше, і не треба нікуди реєструватися.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">АМ</span>
+              <span><span class="block font-bold text-gray-900">Андрій М.</span><span class="block text-xs text-gray-500">Медбрат · аудіо-релакс</span></span>
+            </footer>
+          </article>
+          <!-- slide 3 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-1.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 5 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«Техніка 5-4-3-2-1 допомогла під час тривоги в укритті. Тепер показую її і своїм дітям.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">ІС</span>
+              <span><span class="block font-bold text-gray-900">Ірина С.</span><span class="block text-xs text-gray-500">Вчителька · заземлення</span></span>
+            </footer>
+          </article>
+          <!-- slide 4 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-2.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 4 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«Зручно, що все українською і відкривається з телефона за секунду. Хотілося б більше відео.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">ДП</span>
+              <span><span class="block font-bold text-gray-900">Дмитро П.</span><span class="block text-xs text-gray-500">IT-інженер · відеопрактики</span></span>
+            </footer>
+          </article>
+          <!-- slide 5 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-3.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 5 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«П'ять хвилин звуків моря в обідню перерву — і я знову можу зосередитися на роботі.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">МВ</span>
+              <span><span class="block font-bold text-gray-900">Марта В.</span><span class="block text-xs text-gray-500">Бухгалтерка · аудіо-релакс</span></span>
+            </footer>
+          </article>
+          <!-- slide 6 -->
+          <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <img src="assets/icons/benefit-1.webp" alt="" width="48" height="48" class="w-12 h-12" loading="lazy">
+              <p class="text-amber-500 text-sm" aria-label="Оцінка 5 з 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></p>
+            </div>
+            <blockquote class="text-gray-700 leading-relaxed flex-1">«Кнопка SOS і гарячі лінії на видноті — це важливо. Платформа не замінює психолога, але допомагає дочекатися консультації.»</blockquote>
+            <footer class="mt-5 flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center" aria-hidden="true">ЮТ</span>
+              <span><span class="block font-bold text-gray-900">Юлія Т.</span><span class="block text-xs text-gray-500">Волонтерка · заземлення</span></span>
+            </footer>
+          </article>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev !hidden md:!flex !text-brand-600"></div>
+        <div class="swiper-button-next !hidden md:!flex !text-brand-600"></div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2">Відгуки — демонстраційний контент навчального проєкту (ЛР №10), імена умовні.</p>
+    </section>
+
     <!-- ==================== 7. CTA (Заклик до дії) + SOS ==================== -->
     <section class="mt-16 sm:mt-20 scroll-mt-24 rounded-3xl bg-gradient-to-br from-brand-700 to-brand-900 text-white p-6 sm:p-10 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center" id="support" aria-labelledby="cta-title">
       <div class="lg:col-span-2">
@@ -454,6 +593,8 @@
             <li><a href="#services" class="hover:text-white transition-colors">Практики</a></li>
             <li><a href="#about" class="hover:text-white transition-colors">Про нас</a></li>
             <li><a href="#media" class="hover:text-white transition-colors">Відеопрактика</a></li>
+            <li><a href="#gallery" class="hover:text-white transition-colors">Галерея «Простір спокою»</a></li>
+            <li><a href="#reviews" class="hover:text-white transition-colors">Відгуки</a></li>
           </ul>
         </div>
         <div>
@@ -498,6 +639,12 @@
 
   <!-- Валідація форми зворотного зв'язку (Vanilla JS, ЛР №9) -->
   <script src="assets/js/validation.js" defer></script>
+
+  <!-- ЛР №10: JS-плагіни на Vanilla JS через CDN + ініціалізація -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+  <script src="assets/js/plugins.js" defer></script>
 
   <!-- Мінімальний JS: мобільне меню + фільтр практик за станом -->
   <script>
