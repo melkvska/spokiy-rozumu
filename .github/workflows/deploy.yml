@@ -1,0 +1,87 @@
+# CI/CD Production Deploy — ЛР №12
+# При кожному push у main: перевірка коду → деплой на Vercel через Vercel CLI.
+# Для pull request виконується лише перевірка (без деплою).
+name: CI/CD Production Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Ідентифікатори проєкту Vercel (не секретні); токен зберігається в GitHub Secrets
+  VERCEL_ORG_ID: team_kAtT7ZoBXXUH7v8B3rNdWGyY
+  VERCEL_PROJECT_ID: prj_zaCUNfp8ta57F49Dsthf6JqdH0ID
+
+jobs:
+  check:
+    name: Перевірка коду
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Синтаксис JavaScript
+        run: for f in assets/js/*.js; do node --check "$f"; done
+
+      - name: Локальні ресурси з index.html існують
+        run: |
+          missing=0
+          for path in $(grep -oE '(src|href)="(assets|css)/[^"#?]+"' index.html | sed -E 's/^[a-z]+="//; s/"$//' | sort -u); do
+            if [ ! -f "$path" ]; then echo "::error::Не знайдено файл $path"; missing=1; fi
+          done
+          exit $missing
+
+      - name: SEO-файли та метатеги
+        run: |
+          test -f robots.txt && test -f sitemap.xml
+          grep -q '<html lang="uk"' index.html
+          grep -q '<meta name="description"' index.html
+          grep -q '<link rel="canonical"' index.html
+
+  deploy:
+    name: Деплой на Vercel (Production)
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Перевірка наявності секрету VERCEL_TOKEN
+        id: token
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::warning::Секрет VERCEL_TOKEN не додано (Settings → Secrets and variables → Actions). Деплой пропущено."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Vercel CLI
+        if: steps.token.outputs.ready == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        if: steps.token.outputs.ready == 'true'
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build Project Artifacts
+        if: steps.token.outputs.ready == 'true'
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - name: Deploy Project Artifacts to Vercel
+        if: steps.token.outputs.ready == 'true'
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
