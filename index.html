@@ -349,7 +349,9 @@
         </button>
       </div>
 
-      <div class="swiper reviews-swiper !pb-12 md:!px-12">
+      <!-- стрілки винесені за межі каруселі, щоб не перекривати текст і сусідні слайди -->
+      <div class="relative md:px-12">
+      <div class="swiper reviews-swiper !pb-12">
         <div class="swiper-wrapper">
           <!-- slide 1 -->
           <article class="swiper-slide !h-auto bg-white rounded-2xl border border-slate-100 shadow-sm p-6 flex flex-col">
@@ -425,8 +427,9 @@
           </article>
         </div>
         <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev !hidden md:!flex !text-brand-600"></div>
-        <div class="swiper-button-next !hidden md:!flex !text-brand-600"></div>
+      </div>
+      <div class="swiper-button-prev !hidden md:!flex !text-brand-600 !top-[calc(50%-1.5rem)]"></div>
+      <div class="swiper-button-next !hidden md:!flex !text-brand-600 !top-[calc(50%-1.5rem)]"></div>
       </div>
       <p class="text-xs text-gray-500 mt-2">Відгуки — демонстраційний контент навчального проєкту (ЛР №10), імена умовні.</p>
     </section>
